@@ -286,7 +286,7 @@ sub read_article
 			$ok_pattern =~ s/\n/\\n/g;
 			$ok_pattern =~ s/\r/\\r/g;
 			open(ARTICLES, ">> $p{'output_path'}") or die "Couldn't write $p{'output_path'}: $!\n";
-			my @line = ("[[$article->{'fulltitle'}]]");
+			my @line = ("$article->{'fulltitle'}");
 			push @line, $ok_pattern;
 			print ARTICLES join("\t", @line) . "\n";
 			close(ARTICLES);
@@ -297,7 +297,7 @@ sub read_article
 			$no_pattern =~ s/\r/\\r/g;
 			open(ARTICLES, ">> $p{'output_rejected_path'}") or die "Couldn't write $p{'output_rejected_path'}: $!\n";
 			
-			my @line = ("[[$article->{'fulltitle'}]]");
+			my @line = ("$article->{'fulltitle'}");
 			push @line, $ok_pattern;
 			push @line, $no_pattern;
 			print ARTICLES join("\t", @line) . "\n";
@@ -312,7 +312,7 @@ sub read_article
 		if ($p{'output_path'}) {
 			open(ARTICLES, ">> $p{'output_path'}") or die "Couldn't write $p{'output_path'}: $!\n";
 			
-			my @line = ("[[$article->{'fulltitle'}]]");
+			my @line = ("$article->{'fulltitle'}");
 			print ARTICLES join("\t", @line) . "\n";
 			close(ARTICLES);
 		}
@@ -348,6 +348,5 @@ $par{'nopat'} = $opt{n};
 
 # Get data from dump
 my $art_count = get_articles_list(\%par);
-close(DUMP);
 
 __END__
