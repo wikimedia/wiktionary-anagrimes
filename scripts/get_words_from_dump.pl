@@ -149,12 +149,12 @@ while(<DUMP>) {
 		# Exclut toutes les pages en dehors de l'espace principal
 		$title = '' if $title =~ /[:\/]/;
 		
-	} elsif ( $title and /<text xml:space="preserve">(.*?)<\/text>/ ) {
+	} elsif ( $title and /<text bytes="\d+" xml:space="preserve">(.*?)<\/text>/ ) {
 		@article = ();
 		push @article, "$1\n";
 		$complete_article = 1;
 		
-		} elsif ( $title and  /<text xml:space="preserve">(.*?)$/ ) {
+		} elsif ( $title and  /<text bytes="\d+" xml:space="preserve">(.*?)$/ ) {
 		@article = ();
 		push @article, "$1\n";
 		while ( <DUMP> ) {
